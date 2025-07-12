@@ -38,6 +38,32 @@ $siteSetting = DB::table('site_setting')->where('id', 1)->first();
             </a>
          </li>
          
+         <li class="{{ $currentUrl == route('admin/gallery/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/gallery/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Gallery</span>
+            </a>
+         </li>
+         <li class="{{ $currentUrl == route('admin/blog_category/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/blog_category/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Blog Category</span>
+            </a>
+         </li>
+         
+         <li class="{{ $currentUrl == route('admin/blog/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/blog/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Blog</span>
+            </a>
+         </li>
+         <li class="{{ $currentUrl == route('admin/services/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/services/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Services</span>
+            </a>
+         </li>
+         
          
          <li class="{{ $currentUrl == route('admin/contact/list') ? 'active' : '' }}">
             <a href="{{ route('admin/contact/list') }}">

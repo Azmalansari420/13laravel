@@ -15,19 +15,9 @@
                <div class="col-lg-8">
                   <div class="card m-b-15">
                      <div class="row card-body">
-                        <div class="col-6 form-group ">
-                           <label>Select Category</label>
-                           <select class="selectpicker  form-control" required name="blog_cat_id" data-style="btn-default" data-live-search="true" >
-                              @php
-                              $blog = DB::Table('blog_category')->where('status',1)->get();
-                              @endphp
-                              @foreach($blog as $data)
-                              <option <?php if($EDITDATA->blog_cat_id==$data->id) echo "selected"; ?> value="<?=$data->id ?>"><?=$data->name ?></option>
-                              @endforeach
-                           </select>
-                        </div>
+                        
 
-                        <div class="col-6 form-group">
+                        <div class="col-12 form-group">
                            <label>Name </label>
                            <input type="text" class="form-control" name="name" value="{{$EDITDATA->name}}">
                         </div>

@@ -12,39 +12,13 @@
             <h1 class="page-header add-header">Update <?=$page_title ?> </h1>
             <form class="row" method="post" enctype="multipart/form-data" action="{{route($update_in_database_url, $EDITDATA->id)}}">
                @csrf
-               <div class="col-lg-8">
-                  <div class="card m-b-15">
-                     <div class="row card-body">
-                        <div class="col-6 form-group ">
-                           <label>Select Category</label>
-                           <select class="selectpicker  form-control" required name="blog_cat_id" data-style="btn-default" data-live-search="true" >
-                              @php
-                              $blog = DB::Table('blog_category')->where('status',1)->get();
-                              @endphp
-                              @foreach($blog as $data)
-                              <option <?php if($EDITDATA->blog_cat_id==$data->id) echo "selected"; ?> value="<?=$data->id ?>"><?=$data->name ?></option>
-                              @endforeach
-                           </select>
-                        </div>
-
-                        <div class="col-6 form-group">
-                           <label>Name </label>
-                           <input type="text" class="form-control" name="name" value="{{$EDITDATA->name}}">
-                        </div>
-
-                        <div class="col-12 form-group">
-                           <label>Content </label>
-                           <textarea name="content" class="summernote form-control">{{$EDITDATA->content}}</textarea>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4">
+              
+               <div class="col-lg-12">
                   <div class="card m-b-15">
                      <div class="row card-body">
                         
 
-                        <div class="col-12 form-group">
+                        <div class="col-6 form-group">
                            <label>Click to Upload Image</label>
                            <input id="image-input" type="file" name="image" class="form-control" >
                            <br>
@@ -57,7 +31,7 @@
                            
                         </div>
 
-                        <div class="col-12 form-group m-b-0">
+                        <div class="col-6 form-group m-b-0">
                            <label>Select Status</label>
                            <select class="selectpicker form-control" required name="status" data-style="btn-default" data-live-search="true">
                               <option value="1"  <?php if($EDITDATA->status==1)echo 'selected'; ?>>Show</option>

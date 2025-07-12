@@ -1,5 +1,15 @@
+@php
+$catid = @$EDITDATA[0]->id;
+if(!empty($catid))
+{
+    $blogs = DB::Table('blog')->where('status',1)->orderBy('id','desc')->where('blog_cat_id',$catid)->paginate(2);
+}
+else
+{
+    $blogs = DB::Table('blog')->where('status',1)->orderBy('id','desc')->paginate(2);
+}
+@endphp
 @include("wp-includes/header")
-
         <link rel='stylesheet' id='elementor-post-4-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-4.css?ver=1744872227' media='all' />
 
         <link rel='stylesheet' id='elementor-post-3356-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-3356.css?ver=1745043187' media='all' />
@@ -9,11 +19,67 @@
         <link rel='stylesheet' id='elementor-post-4773-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-4773.css?ver=1744872230' media='all' />
         
 @include("wp-includes/header-bottom")
+<style>
+    .pagination-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+.pagination {
+    display: inline-flex;
+    list-style: none;
+    padding-left: 0;
+}
+.pagination-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination {
+    display: inline-flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-item.disabled .page-link,
+.page-item.disabled .page-link:hover {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+.page-item .page-link {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    pointer-events: none;
+}
+</style>
 
     <body class="wp-singular page-template page-template-template-homepage page-template-template-homepage-php page page-id-3356 wp-custom-logo wp-embed-responsive wp-theme-spaciaz wp-child-theme-demo-child ehf-header ehf-footer ehf-template-spaciaz ehf-stylesheet-demo-child chrome theme-spaciaz no-wc-breadcrumb elementor-default elementor-kit-4 elementor-page elementor-page-3356">
         <div id="page" class="hfeed site">
             
-            @include("wp-includes/header-bottom")
+            @include("wp-includes/header-navbar")
 
             <div id="content" class="site-content-page clear" tabindex="-1">
                 <div class="col-fluid">
@@ -68,25 +134,32 @@
                                                 <div class="elementor-post-wrapper elementor-post-list">
                                                     <div class="d-grid">
                                                         <div class="grid-item">
+
+                                                            @php
+                                                            $blog = DB::Table('blog')->orderBy('id','desc')->limit(1)->where('status',1)->first();
+                                                            @endphp
+                                                            @php
+                                                            $cat = DB::Table('blog_category')->where('id',$blog->blog_cat_id)->first();
+                                                            @endphp
                                                             <article id="post-38" class="article-default post-38 post type-post status-publish format-standard has-post-thumbnail hentry category-tips-tricks">
                                                                 <div class="post-inner blog-list">
                                                                     <div class="post-content">
                                                                         <div class="post-left">
-                                                                            <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="593" height="391" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
+                                                                            <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="593" height="391" src="{{url('public/media/uploads/blog/'.@$blog->image)}}" class="attachment-large size-large wp-post-image"  /></div>
                                                                         </div>
                                                                         <div class="post-right">
                                                                             <div class="entry-meta">
                                                                                 <div class="entry-meta-inner">
-                                                                                    <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                                    <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
+                                                                                    <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="{{url(@$cat->slug)}}" rel="category tag">{{@$cat->name}}</a></div>
+                                                                                    <div class="posted-on"><a href="{{url($blog->slug)}}" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">{{date('d M, Y',strtotime(@$blog->addeddate)) }}</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">{{date('d M, Y',strtotime(@$blog->addeddate)) }}</time></a></div>
                                                                                 </div>
                                                                             </div>
-                                                                            <h3 class="delta entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
+                                                                            <h3 class="delta entry-title"><a href="{{url($blog->slug)}}" rel="bookmark">{{@$blog->name}}</a></h3>
                                                                             <div class="entry-excerpt">
-                                                                                <p>We bring deep, functional expertise, but are known for our holistic perspective: we capture value across boundaries&#8230;</p>
+                                                                               {{ Str::limit(strip_tags($blog->content), 100) }}
                                                                             </div>
                                                                             <div class="more-link-wrap">
-                                                                                <a class="more-link" href="single-blog.php">Continue Reading</a>                
+                                                                                <a class="more-link" href="{{url($blog->slug)}}">Continue Reading</a>                
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -110,11 +183,13 @@
                                         <div class="elementor-element elementor-element-e38ca75 elementor-widget elementor-widget-spaciaz-post-filter" data-id="e38ca75" data-element_type="widget" data-widget_type="spaciaz-post-filter.default">
                                             <div class="elementor-widget-container">
                                                 <div class="navigation-post-filter">
-                                                    <a class="" href="blog/">All Posts</a>
-                                                    <a class="" href="category/company-insights/">Company Insights</a>
-                                                    <a class="" href="category/social-media/">Social Media</a>
-                                                    <a class="" href="category/tips-tricks/">Tips &amp; Tricks</a>
-                                                    <a class="" href="category/uncategorized/">Uncategorized</a>
+                                                    <a class="" href="{{url('blog')}}">All Posts</a>
+                                                    @php
+                                                    $blogcat = DB::Table('blog_category')->where('status',1)->get();
+                                                    @endphp
+                                                    @foreach($blogcat as $data)
+                                                    <a class="" href="{{url(@$data->slug)}}">{{@$data->name}}</a>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -122,120 +197,34 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-post-wrapper elementor-post-style-1">
                                                     <div class="d-grid">
+
+                                                        @foreach($blogs as $data)
+                                                        @php
+                                                            $cats = DB::Table('blog_category')->where('id',$data->blog_cat_id)->first();
+                                                            @endphp
                                                         <div class="grid-item">
                                                             <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
+                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="{{url('public/media/uploads/blog/'.@$data->image)}}" alt="image" /></div>
                                                                 <div class="post-content">
                                                                     <div class="entry-meta">
                                                                         <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
+                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="{{url(@$cats->slug)}}" rel="category tag">{{@$cats->name}}</a></div>
+                                                                            <div class="posted-on"><a href="{{url(@$data->slug)}}" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">{{date('d M, Y',strtotime(@$data->addeddate)) }}</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">{{date('d M, Y',strtotime(@$data->addeddate)) }}</time></a></div>
                                                                         </div>
                                                                     </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
+                                                                    <h3 class="omega entry-title"><a href="{{url(@$data->slug)}}" rel="bookmark">{{@$data->name}}</a></h3>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item">
-                                                            <div class="post-inner blog-grid">
-                                                                <div class="post-thumbnail"><img fetchpriority="high" decoding="async" width="410" height="281" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="image" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1 1400w" sizes="(max-width: 900px) 100vw, 900px" /></div>
-                                                                <div class="post-content">
-                                                                    <div class="entry-meta">
-                                                                        <div class="entry-meta-inner">
-                                                                            <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                                            <div class="posted-on"><a href="single-blog.php" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <h3 class="omega entry-title"><a href="single-blog.php" rel="bookmark">How to Get Started in Buying Your First Home</a></h3>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        @endforeach
+                                                        
                                                         
                                                     </div>
+
+                                                    <div class="pagination-wrapper text-center mt-4">
+                                                        {{ $blogs->links('pagination::bootstrap-4') }}
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

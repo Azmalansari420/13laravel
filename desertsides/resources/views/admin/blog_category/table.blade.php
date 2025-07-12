@@ -2,8 +2,6 @@
     <thead>
         <tr>
             <th width="1%">#</th>
-            <th>Image</th>
-            <th>Category</th>
             <th>Name</th>
             <th>Status</th>
             <th>Action</th>
@@ -11,17 +9,13 @@
     </thead>
     <tbody>
         @foreach($ALLDATA as $key => $data)
-        @php
-        $cat = DB::Table('blog_category')->where('id',$data->blog_cat_id)->first();
-        @endphp
             <tr>
                 <td>{{ $key + 1 + $offset }}
                     <input type="checkbox" name="multiple_delete[]" value="{{ $data->id }}" class="multiple_delete">
                 </td>
-                <td><img src="{{url('public/'.$upload_path)}}/{{ $data->image }}" width="75px" onerror="this.src='{{url('public/media/uploads/not-found.jpg')}}'"></td>
-                <td>{{ @$cat->name }}</td>
-                <td>{{ @$data->name }}</td>
-                                <td>
+                <td><?=$data->name ?></td>
+                
+                <td>
                     <div class="switcher switcher-success">
                         <span id="statusbyid{{ $data->id }}">{!! status($data->status) !!}</span>
                         <input type="checkbox" 

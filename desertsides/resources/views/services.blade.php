@@ -67,14 +67,19 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-service-wrapper">
                                                     <div class="d-grid">
+
+                                                        @php
+                                                        $service = DB::Table('services')->where('status',1)->get();
+                                                        @endphp
+                                                        @foreach($service as $data)
                                                         <div class="grid-item service-item service-style-1">
                                                             <div class="service-inner service-style-inner">
                                                                 <div class="service-content">
                                                                     <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
+                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="{{url('public/media/uploads/services/'.$data->image)}}" class="attachment-large size-large wp-post-image"/>                    
                                                                     </div>
                                                                     <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
+                                                                        <a class="service-button" href="{{url($data->slug)}}">
                                                                         <span class="btn-icon-wrap">
                                                                         <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
                                                                         <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
@@ -84,157 +89,16 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">Design & Construction of Temporary Camps</a></h4>
+                                                                    <h4 class="service-title"><a href="{{url($data->slug)}}">{{$data->name}}</a></h4>
                                                                     <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
+                                                                        {!! $data->content !!}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">Perimeter Fence Works in Dammam</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">Project Support Services</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">MEP Works</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">Equipment Rental Services</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">Fire Detection</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-service.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-service.php">Camp Operations</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
+
+                                                        @endforeach
                                                         
                                                         
                                                     </div>

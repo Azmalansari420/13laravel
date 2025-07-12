@@ -7,35 +7,36 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
-class Blog extends Controller
+class Blog_category extends Controller
 {
     protected $arr_values = array(
-                            'page_title'=>'Blog',
-                            'table_name'=>'blog',
-                            'upload_path'=>'media/uploads/blog/',
-                            'table_data_page_url'=>'admin/blog/table',
+                            'page_title'=>'Blog Category',
+                            'table_name'=>'blog_category',
+                            'upload_path'=>'media/uploads/blog_category/',
+                            'table_data_page_url'=>'admin/blog_category/table',
                             'table_data_pagination_limit'=>15,
-                            'load_list_path'=>'admin/blog/list',
+                            'load_list_path'=>'admin/blog_category/list',
                             /*add page*/
-                            'add_page_view'=>'admin/blog/add',
-                            'add_page_link'=>'blog/add',
-                            'add_in_database_url'=>'admin_con/blog/add_data',
+                            'add_page_view'=>'admin/blog_category/add',
+                            'add_page_link'=>'blog_category/add',
+                            'add_in_database_url'=>'admin_con/blog_category/add_data',
                             /*edit page*/
-                            'edit_page_url'=>'admin/blog/edit',
-                            'update_in_database_url'=>'admin_con/blog/update_data',
-                            'status_url'=>'admin/blog/update_status',
+                            'edit_page_url'=>'admin/blog_category/edit',
+                            'update_in_database_url'=>'admin_con/blog_category/update_data',
+                            'status_url'=>'admin/blog_category/update_status',
                             /*delete*/
-                            'delete_single_url'=>'admin_con/blog/delete_data',
-                            'multiple_delete'=>'admin_con/blog/multiple_delete_data',
-                            'check_image'=>true,  
-                            'controller_name'=>'blog',
-                            'page_name'=>'blog-details',
+                            'delete_single_url'=>'admin_con/blog_category/delete_data',
+                            'multiple_delete'=>'admin_con/blog_category/multiple_delete_data',
+                            'check_image'=>true,
+                            'controller_name'=>'blog_category',
+                            'page_name'=>'blog',    
+
                            ); 
 
 
 
 
-    // Display all blog
+    // Display all 
     public function listing()
     {
         checkAdminSession();
@@ -64,7 +65,7 @@ class Blog extends Controller
 
         $query = DB::table($this->arr_values['table_name']);
         if (!empty($search)) {
-            $query->where('title', 'LIKE', "%{$search}%")
+            $query->where('name', 'LIKE', "%{$search}%")
                   ->orWhere('id', 'LIKE', "%{$search}%");
         }
 
@@ -105,25 +106,16 @@ class Blog extends Controller
             mkdir($uploadPath, 0755, true);
         }
 
-        $imageName = null;
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $imageName = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move($uploadPath, $imageName);
-        }
+        
 
-        $blog_cat_id = $request->input('blog_cat_id');
         $name = $request->input('name');
         $slug = slug($name);
-        $content = $request->input('content');
         $status = $request->input('status');
         $addeddate = now();
 
         $insertdata = [
-            "blog_cat_id"=>$blog_cat_id,
             "name"=>$name,
             "slug"=>$slug,
-            "content"=>$content,
-            "image"=>$imageName,
             "status"=>$status,
             "addeddate"=>$addeddate
         ];
@@ -143,6 +135,7 @@ class Blog extends Controller
         );
         insert_meta_tags($new_slug, $old_slug);
         DB::table($this->arr_values['table_name'])->where('id', $insert_id)->update(['slug' => $new_slug]);
+     
 
         return redirect()->route($this->arr_values['load_list_path'])->with('message', 'Added Successfully.');
     }
@@ -171,40 +164,20 @@ class Blog extends Controller
         if (!file_exists($uploadPath)) {
             mkdir($uploadPath, 0755, true);
         }
-        $imageName = $request->input('oldimage'); 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $imageName = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move($uploadPath, $imageName);
 
-            // Delete old image
-            $oldImagePath = $uploadPath . $request->input('oldimage');
-            if (!empty($request->input('oldimage')) && file_exists($oldImagePath) && is_file($oldImagePath)) 
-            {
-                unlink($oldImagePath);
-            } else {
-                logger('Old image not found or is invalid: ' . $request->input('oldimage'));
-            }
-        }
-
-        $blog_cat_id = $request->input('blog_cat_id');
         $name = $request->input('name');
         $slug = slug($name);
-        $content = $request->input('content');
+
         $status = $request->input('status');
         $modifieddate = now();
 
         $upadatedata = [
-            "blog_cat_id"=>$blog_cat_id,
             "name"=>$name,
             "slug"=>$slug,
-            "content"=>$content,
-            "image"=>$imageName,
             "status"=>$status,
             "modifieddate"=>$modifieddate
         ];
         DB::table($this->arr_values['table_name'])->where('id', $id)->update($upadatedata);
-
-        /*table controller*/
         $insert_id = $id;
         $old_slug_data = DB::table($this->arr_values['table_name'])->where('id', $insert_id)->select('slug')->first();
         $old_slug = $old_slug_data->slug ?? '';
@@ -218,8 +191,7 @@ class Blog extends Controller
         );
         insert_meta_tags($new_slug, $old_slug);
         DB::table($this->arr_values['table_name'])->where('id', $insert_id)->update(['slug' => $new_slug]);
-
-
+       
         return redirect()->route($this->arr_values['load_list_path'])->with('message', 'Updated Successfully.');
     }
 

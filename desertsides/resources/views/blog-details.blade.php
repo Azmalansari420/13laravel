@@ -1,5 +1,9 @@
 @include("wp-includes/header")
 
+@php
+$cat = DB::Table('blog_category')->where('id',$EDITDATA[0]->blog_cat_id)->first();
+@endphp
+
         <link rel='stylesheet' id='elementor-post-4-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-4.css?ver=1744872227' media='all' />
         <link rel='stylesheet' id='elementor-post-64-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-64.css?ver=1744872230' media='all' />
         <link rel='stylesheet' id='elementor-post-264-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-264.css?ver=1747820298' media='all' />
@@ -32,7 +36,7 @@
                                                         </svg>
                                                     </span>
                                                 </li>
-                                                <li class="hfe-breadcrumbs-item "><a href="category/tips-tricks/"><span class="hfe-breadcrumbs-text">Tips &amp; Tricks</span></a></li>
+                                                <li class="hfe-breadcrumbs-item "><a href="{{url(@$cat->slug)}}"><span class="hfe-breadcrumbs-text">{{@$cat->name}}</span></a></li>
                                                 <li class="hfe-breadcrumbs-separator">
                                                     <span class="hfe-breadcrumbs-separator-icon">
                                                         <svg aria-hidden="true" class="e-font-icon-svg e-fas-square-full" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +44,7 @@
                                                         </svg>
                                                     </span>
                                                 </li>
-                                                <li class="hfe-breadcrumbs-item hfe-breadcrumbs-last"><span class="hfe-breadcrumbs-text" aria-current="page">How to Get Started in Buying Your First Home</span></li>
+                                                <li class="hfe-breadcrumbs-item hfe-breadcrumbs-last"><span class="hfe-breadcrumbs-text" aria-current="page">{{@$EDITDATA[0]->name}}</span></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -66,19 +70,16 @@
                                     <header class="entry-header header-post-thumbnail">
                                         <div class="entry-meta">
                                             <div class="entry-meta-inner">
-                                                <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="category/tips-tricks/" rel="category tag">Tips &amp; Tricks</a></div>
-                                                <div class="posted-on"><a href="how-to-get-started-in-buying-your-first-home/" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">March 18, 2025</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">April 17, 2025</time></a></div>
+                                                <div class="categories-link"><span class="screen-reader-text">Categories</span><a href="{{url(@$cat->slug)}}" rel="category tag">{{@$cat->name}}</a></div>
+                                                <div class="posted-on"><a href="how-to-get-started-in-buying-your-first-home/" rel="bookmark"><time class="entry-date published" datetime="2025-03-18T08:29:47+00:00">{{date('d M, Y',strtotime(@$EDITDATA[0]->addeddate)) }}</time><time class="updated" datetime="2025-04-17T01:52:36+00:00">{{date('d M, Y',strtotime(@$EDITDATA[0]->addeddate)) }}</time></a></div>
                                             </div>
                                         </div>
-                                        <h2 class="beta entry-title">How to Get Started in Buying Your First Home</h2>
+                                        <h2 class="beta entry-title">{{@$EDITDATA[0]->name}}</h2>
                                     </header>
                                     <!-- .entry-header -->
-                                    <div class="post-thumbnail"><img width="1290" height="600" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="image" decoding="async" /></div>
+                                    <div class="post-thumbnail"><img width="1290" height="600" src="{{url('public/media/uploads/blog/'.$EDITDATA[0]->image)}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="image" decoding="async" /></div>
                                     <div class="entry-content">
-                                        <p>It&#8217;s no secret that access to quality education is unevenly distributed. Many children in underserved communities lack proper school infrastructure, qualified teachers, and essential learning resources. This disparity creates a cycle of disadvantage that persists from one generation to the next. Addressing this divide is crucial for breaking the chains of poverty and fostering sustainable development. Education is more than just acquiring facts; it&#8217;s about empowerment. When we invest in education, we equip individuals with the tools they need to think critically, solve problems, and make informed decisions. Education empowers children to dream beyond their circumstances and envision a world of possibilities. It&#8217;s a catalyst for personal growth, self-confidence, and social mobility. Education doesn&#8217;t just benefit individuals; it transforms entire communities.</p>
-
-                                        <p>Education is more than just acquiring facts; it&#8217;s about empowerment. When we invest in education, we equip individuals with the tools they need to think critically, solve problems, and make informed decisions. Education empowers children to dream beyond their circumstances and envision a world of possibilities. It&#8217;s a catalyst for personal growth, self-confidence, and social mobility. Education doesn&#8217;t just benefit individuals; it transforms entire communities. Educated individuals become agents of change, driving progress and innovation in their societies.</p>
-                                        <p>In a world brimming with opportunities, it&#8217;s disheartening to know that not everyone has equal access to education. Education is the cornerstone of progress and personal growth, yet countless communities around the globe struggle to provide quality learning experiences for their children. This blog post delves into the profound significance of supporting education initiatives in underserved communities and how they can pave the way for a brighter future.</p>
+                                        {!! $EDITDATA[0]->content !!}
                                     </div>
                                     <!-- .entry-content -->
                                     

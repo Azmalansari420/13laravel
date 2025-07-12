@@ -7,35 +7,35 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
-class Blog extends Controller
+class Services extends Controller
 {
     protected $arr_values = array(
-                            'page_title'=>'Blog',
-                            'table_name'=>'blog',
-                            'upload_path'=>'media/uploads/blog/',
-                            'table_data_page_url'=>'admin/blog/table',
+                            'page_title'=>'Services',
+                            'table_name'=>'services',
+                            'upload_path'=>'media/uploads/services/',
+                            'table_data_page_url'=>'admin/services/table',
                             'table_data_pagination_limit'=>15,
-                            'load_list_path'=>'admin/blog/list',
+                            'load_list_path'=>'admin/services/list',
                             /*add page*/
-                            'add_page_view'=>'admin/blog/add',
-                            'add_page_link'=>'blog/add',
-                            'add_in_database_url'=>'admin_con/blog/add_data',
+                            'add_page_view'=>'admin/services/add',
+                            'add_page_link'=>'services/add',
+                            'add_in_database_url'=>'admin_con/services/add_data',
                             /*edit page*/
-                            'edit_page_url'=>'admin/blog/edit',
-                            'update_in_database_url'=>'admin_con/blog/update_data',
-                            'status_url'=>'admin/blog/update_status',
+                            'edit_page_url'=>'admin/services/edit',
+                            'update_in_database_url'=>'admin_con/services/update_data',
+                            'status_url'=>'admin/services/update_status',
                             /*delete*/
-                            'delete_single_url'=>'admin_con/blog/delete_data',
-                            'multiple_delete'=>'admin_con/blog/multiple_delete_data',
+                            'delete_single_url'=>'admin_con/services/delete_data',
+                            'multiple_delete'=>'admin_con/services/multiple_delete_data',
                             'check_image'=>true,  
-                            'controller_name'=>'blog',
-                            'page_name'=>'blog-details',
+                            'controller_name'=>'services',
+                            'page_name'=>'services-details',
                            ); 
 
 
 
 
-    // Display all blog
+    // Display all services
     public function listing()
     {
         checkAdminSession();
@@ -64,7 +64,7 @@ class Blog extends Controller
 
         $query = DB::table($this->arr_values['table_name']);
         if (!empty($search)) {
-            $query->where('title', 'LIKE', "%{$search}%")
+            $query->where('name', 'LIKE', "%{$search}%")
                   ->orWhere('id', 'LIKE', "%{$search}%");
         }
 
@@ -111,7 +111,7 @@ class Blog extends Controller
             $request->file('image')->move($uploadPath, $imageName);
         }
 
-        $blog_cat_id = $request->input('blog_cat_id');
+
         $name = $request->input('name');
         $slug = slug($name);
         $content = $request->input('content');
@@ -119,7 +119,6 @@ class Blog extends Controller
         $addeddate = now();
 
         $insertdata = [
-            "blog_cat_id"=>$blog_cat_id,
             "name"=>$name,
             "slug"=>$slug,
             "content"=>$content,
@@ -186,7 +185,7 @@ class Blog extends Controller
             }
         }
 
-        $blog_cat_id = $request->input('blog_cat_id');
+
         $name = $request->input('name');
         $slug = slug($name);
         $content = $request->input('content');
@@ -194,7 +193,6 @@ class Blog extends Controller
         $modifieddate = now();
 
         $upadatedata = [
-            "blog_cat_id"=>$blog_cat_id,
             "name"=>$name,
             "slug"=>$slug,
             "content"=>$content,
