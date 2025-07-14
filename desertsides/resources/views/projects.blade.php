@@ -1,3 +1,90 @@
+@php
+$p_status = request()->get('status');
+$type = request()->get('type');
+
+if (!empty($p_status) && !empty($type)) {
+    // Both filters applied
+    $project = DB::table('projects')
+                ->where('status', 1)
+                ->where('p_status', $p_status)
+                ->where('cat_id', $type)
+                ->paginate(1);
+} elseif (!empty($p_status)) {
+    // Only status filter
+    $project = DB::table('projects')
+                ->where('status', 1)
+                ->where('p_status', $p_status)
+                ->paginate(1);
+} elseif (!empty($type)) {
+    // Only type filter
+    $project = DB::table('projects')
+                ->where('status', 1)
+                ->where('cat_id', $type)
+                ->paginate(1);
+} else {
+    // No filters
+    $project = DB::table('projects')
+                ->where('status', 1)
+                ->paginate(1);
+}
+@endphp
+
+<style>
+    .pagination-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+.pagination {
+    display: inline-flex;
+    list-style: none;
+    padding-left: 0;
+}
+.pagination-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination {
+    display: inline-flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-item.disabled .page-link,
+.page-item.disabled .page-link:hover {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+.page-item .page-link {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    pointer-events: none;
+}
+</style>
 @include("wp-includes/header")
 
         <link rel='stylesheet' id='elementor-post-4-css' href='{{url('')}}/wp-content/uploads/elementor/css/post-4.css?ver=1744872227' media='all' />
@@ -82,17 +169,17 @@
                                             <h4 class="filter-title">Filter</h4>
                                             <select name="status">
                                                 <option selected value="">Project Status</option>
-                                                <option  value="completed">Completed</option>
-                                                <option  value="under-construction">Under Construction</option>
+                                                <option  value="1" @if($p_status == 1) selected @endif>Completed</option>
+                                                <option  value="2" @if($p_status==2) selected @endif>Under Construction</option>
                                             </select>
                                             <select name="type">
                                                 <option selected value="">Project Type</option>
-                                                <option  value="apartment">Apartment</option>
-                                                <option  value="building">Building</option>
-                                                <option  value="industrial">Industrial</option>
-                                                <option  value="office">Office</option>
-                                                <option  value="residential">Residential</option>
-                                                <option  value="villa">Villa</option>
+                                                @php
+                                                $cat = DB::Table('projects_cate')->where('status',1)->get();
+                                                @endphp
+                                                @foreach($cat as $data)
+                                                <option  value="{{$data->id}}" @if($type==$data->id) selected :  @endif >{{$data->name}}</option>
+                                                @endforeach
                                             </select>
                                             
                                             <div class="filter-wrap filter-wrap-button"><button type="submit">Search</button></div>
@@ -100,130 +187,27 @@
                                     </div>
                                     <div class="archive-content-inner">
                                         <div style="--gutter-width: 30px;" class="d-grid grid-columns-desktop-3 grid-columns-tablet-2 grid-columns-1">
+
+                                            @foreach($project as $data)
                                             <div class="grid-item">
                                                 <div class="project-item project-style-2">
                                                     <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
+                                                        <img width="410" height="500" src="{{url('public/media/uploads/projects/'.$data->image)}}" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" />            
                                                     </div>
                                                     <!-- .post-thumbnail -->
                                                     <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
+                                                        <div class="project-status">{!! p_status($data->p_status) !!}</div>
+                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>{{$data->location}}</div>
+                                                        <h4 class="project-title delta"><a href="{{url($data->slug)}}">{{$data->name}}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="grid-item">
-                                                <div class="project-item project-style-2">
-                                                    <div class="project-post-thumbnail">
-                                                        <img width="410" height="500" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-spaciaz-project size-spaciaz-project wp-post-image" alt="" decoding="async" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1920w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1000,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-700,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />            
-                                                    </div>
-                                                    <!-- .post-thumbnail -->
-                                                    <div class="project-content">
-                                                        <div class="project-status">Completed</div>
-                                                        <div class="project-location"><i class="spaciaz-icon-marker"></i>New York, NY</div>
-                                                        <h4 class="project-title delta"><a href="single-projetc.php">Mixed-Use Development</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
+
+                                            
                                         </div>
-                                        <div class="pagination">
-                                            <ul class='page-numbers'>
-                                                <li><span aria-current="page" class="page-numbers current">1</span></li>
-                                                <li><a class="page-numbers" href="projects/page/2/">2</a></li>
-                                                <li><a class="next page-numbers" href="projects/page/2/"></a></li>
-                                            </ul>
+                                        <div class="pagination " style="    margin-top: 27px;">
+                                            {{ $project->links('pagination::bootstrap-4') }}
                                         </div>
                                     </div>
                                 </div>

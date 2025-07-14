@@ -86,8 +86,8 @@
                                                                     Support email</span>
                                                                 </h5>
                                                                 <p class="elementor-icon-box-description">
-                                                                    <a href="mailto:info@desertsides.com">info@desertsides.com</a>
-																	<a href="mailto:sales@desertsides.com">sales@desertsides.com</a>					
+                                                                    <a href="mailto:{{$sitesetting->email}}">{{$sitesetting->email}}</a>
+																	<a href="mailto:{{$sitesetting->alt_email}}">{{$sitesetting->alt_email}}</a>					
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -121,8 +121,8 @@
                                                                     Phone number						</span>
                                                                 </h5>
                                                                 <p class="elementor-icon-box-description">
-                                                                    (+966) 13 837 3350 <br>
-																	(+966) 13 837 3005				
+                                                                   {{$sitesetting->mobile}}<br>
+																	{{$sitesetting->alt_mobile}}			
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -156,7 +156,7 @@
                                                                     Location</span>
                                                                 </h5>
                                                                 <p class="elementor-icon-box-description">
-                                                                    Box 69088, Dammam 31547, Kingdom of Saudi Arabia					
+                                                                    {{$sitesetting->address}}					
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -191,35 +191,33 @@
                                                                 <p role="status" aria-live="polite" aria-atomic="true"></p>
                                                                 <ul></ul>
                                                             </div>
-                                                            <form action="/spaciaz/contact/#wpcf7-f892-p61-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                                                                <div style="display: none;">
-                                                                    <input type="hidden" name="_wpcf7" value="892" />
-                                                                    <input type="hidden" name="_wpcf7_version" value="6.0.6" />
-                                                                    <input type="hidden" name="_wpcf7_locale" value="en_US" />
-                                                                    <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f892-p61-o1" />
-                                                                    <input type="hidden" name="_wpcf7_container_post" value="61" />
-                                                                    <input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-                                                                </div>
+                                                            <form action="{{ route('contact.store') }}" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
+                                                                @csrf
+                                                                
                                                                 <div class="row">
                                                                     <div class="column-50">
                                                                         <p><span class="wpcf7-form-control-wrap" data-name="first-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Full Name*" value="" type="text" name="name" /></span>
                                                                         </p>
                                                                     </div>
                                                                     <div class="column-50">
-                                                                        <p><span class="wpcf7-form-control-wrap" data-name="last-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Phone Number*" value="" type="number" name="phone" /></span>
+                                                                        <p><span class="wpcf7-form-control-wrap" data-name="last-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Phone Number*" value="" type="number" name="mobile" /></span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="column-50">
+                                                                        <p><span class="wpcf7-form-control-wrap" data-name="your-email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email Address*" value="" type="email" name="email" /></span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="column-50">
+                                                                        <p><span class="wpcf7-form-control-wrap" data-name="your-subject"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Subject" value="" type="text" name="subject" /></span>
                                                                         </p>
                                                                     </div>
                                                                     <div class="column-100">
-                                                                        <p><span class="wpcf7-form-control-wrap" data-name="your-email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email Address*" value="" type="email" name="your-email" /></span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="column-100">
-                                                                        <p><span class="wpcf7-form-control-wrap" data-name="textarea-366"><textarea cols="40" rows="6" maxlength="2000" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Write your message..." name="textarea-366"></textarea></span>
+                                                                        <p><span class="wpcf7-form-control-wrap" data-name="textarea-366"><textarea cols="40" rows="6" maxlength="2000" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Write your message..." name="message"></textarea></span>
                                                                         </p>
                                                                     </div>
                                                                     <div class="column-100 wpcf7-button elementor-button-outline">
                                                                         <div class="submit-btn enable-style-icon-yes">
-                                                                            <p><button type="submit" value="submit" class="elementor-button"><span class="elementor-button-content-wrapper"><span class="elementor-button-text">submit</span><span class="elementor-button-icon"><span class="btn-icon-wrap"><span class="btn-icon"><i class="spaciaz-icon- spaciaz-icon-arrow-long-right"></i></span><span class="btn-icon-hover"><i class="spaciaz-icon- spaciaz-icon-arrow-long-right"></i></span></span></span></span></button>
+                                                                            <p><button type="submit" value="submit" name="submit" class="elementor-button"><span class="elementor-button-content-wrapper"><span class="elementor-button-text">submit</span><span class="elementor-button-icon"><span class="btn-icon-wrap"><span class="btn-icon"><i class="spaciaz-icon- spaciaz-icon-arrow-long-right"></i></span><span class="btn-icon-hover"><i class="spaciaz-icon- spaciaz-icon-arrow-long-right"></i></span></span></span></span></button>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -247,7 +245,7 @@
                                             <div class="elementor-element elementor-element-00b0c2a elementor-widget elementor-widget-google_maps" data-id="00b0c2a" data-element_type="widget" data-widget_type="google_maps.default">
                                                 <div class="elementor-widget-container">
                                                     <div class="elementor-custom-embed">
-                                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.1654762604653!2d49.9764907!3d26.482616399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e36012f16de28b7%3A0x90893e154b084630!2sDESERT%20SIDES%20INTERNATIONAL%20INDUSTRIAL%20CO.LTD!5e0!3m2!1sen!2sin!4v1740728451372!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                        {!! $sitesetting->map !!}
                                                     </div>
                                                 </div>
                                             </div>

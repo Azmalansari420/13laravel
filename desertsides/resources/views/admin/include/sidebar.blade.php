@@ -64,6 +64,42 @@ $siteSetting = DB::table('site_setting')->where('id', 1)->first();
             </a>
          </li>
          
+         <li class="{{ $currentUrl == route('admin/projects_cate/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/projects_cate/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Projects Cate</span>
+            </a>
+         </li>
+         <li class="{{ $currentUrl == route('admin/projects/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/projects/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Projects</span>
+            </a>
+         </li>
+         
+         
+         <li class="{{ $currentUrl == route('admin/products/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/products/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Products</span>
+            </a>
+         </li>
+         
+         
+         <li class="{{ $currentUrl == route('admin/clients/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/clients/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Clients</span>
+            </a>
+         </li>
+         
+         <li class="{{ $currentUrl == route('admin/team/list') ? 'active' : '' }}">
+            <a href="{{ route('admin/team/list') }}">
+               <span class="nav-icon"><i class="fa fa-cog bg-black text-white"></i></span>
+               <span class="nav-text">Team</span>
+            </a>
+         </li>
+         
          
          <li class="{{ $currentUrl == route('admin/contact/list') ? 'active' : '' }}">
             <a href="{{ route('admin/contact/list') }}">

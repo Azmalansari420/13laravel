@@ -44,7 +44,7 @@
                                                         </svg>
                                                     </span>
                                                 </li>
-                                                <li class="hfe-breadcrumbs-item hfe-breadcrumbs-last"><span class="hfe-breadcrumbs-text" aria-current="page">Fire Rated Aluminum Doors</span></li>
+                                                <li class="hfe-breadcrumbs-item hfe-breadcrumbs-last"><span class="hfe-breadcrumbs-text" aria-current="page">{{ $EDITDATA[0]->name }}</span></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -71,54 +71,21 @@
                                         <div class="elementor-element elementor-element-e14b5ff e-con-full e-flex e-con e-child" data-id="e14b5ff" data-element_type="container">
                                             <div class="elementor-element elementor-element-30abe03 elementor-widget elementor-widget-spaciaz-post-thumbnails" data-id="30abe03" data-element_type="widget" data-widget_type="spaciaz-post-thumbnails.default">
                                                 <div class="elementor-widget-container">
-                                                    <div class="elementor-post-thumbnail"><img fetchpriority="high" decoding="async" width="1500" height="1000" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-800,h-auto,fo-webp,dpr-1" class="attachment-full size-full wp-image-1048" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1200,h-auto,fo-webp,dpr-1 1500w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w" sizes="(max-width: 1500px) 100vw, 1500px" /></div>
+                                                    <div class="elementor-post-thumbnail"><img fetchpriority="high" decoding="async" width="1500" height="1000" src="{{url('public/media/uploads/products/'.$EDITDATA[0]->image)}}" class="attachment-full size-full wp-image-1048" alt="" /></div>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-4f57c34 elementor-widget elementor-widget-heading" data-id="4f57c34" data-element_type="widget" data-widget_type="heading.default">
                                                 <div class="elementor-widget-container">
-                                                    <h3 class="elementor-heading-title elementor-size-default">Fire Rated Aluminum Doors</h3>
+                                                    <h3 class="elementor-heading-title elementor-size-default">{{ $EDITDATA[0]->name }}</h3>
                                                 </div>
                                             </div>
                                             <div class="elementor-element elementor-element-9f78e24 elementor-widget elementor-widget-text-editor" data-id="9f78e24" data-element_type="widget" data-widget_type="text-editor.default">
                                                 <div class="elementor-widget-container">
-                                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudtium, totam rem aperiam, eaque ipsa quae ab illoentore veritatis et quasi architecto.</p>
+                                                    {!! $EDITDATA[0]->content !!}
                                                 </div>
                                             </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
-                                            <div class="elementor-element elementor-element-937da58 elementor-widget elementor-widget-text-editor" data-id="937da58" data-element_type="widget" data-widget_type="text-editor.default">
-                                                <div class="elementor-widget-container">
-                                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia conseuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloreue laudantium, totam rem aperiam.</p>
-                                                </div>
-                                            </div>
+                                            
+                                           
                                             
                                             
                                         </div>
@@ -133,55 +100,19 @@
                                                     <div class="elementor-widget-container">
                                                         <div class="elementor-service-wrapper">
                                                             <div class="d-grid">
-                                                                <div class="service-item service-style_list  post-1050 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
+                                                                @php
+                                                                $products = DB::Table('products')->where('status',1)->get()
+                                                                @endphp
+                                                                @foreach($products as  $key => $data)
+                                                                <div class="service-item service-style_list @if($data->id == $EDITDATA[0]->id) current_post @endif post-1060 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
                                                                     <div class="service-inner">
                                                                         <div class="service-title">
-                                                                            <a href="services/real-estate-development/"><span>Aluminum Windows </span><i class="spaciaz-icon-chevron-right"></i></a>
+                                                                            <a href="{{url($data->slug)}}"><span>{{$data->name}}</span><i class="spaciaz-icon-chevron-right"></i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="service-item service-style_list  post-1054 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
-                                                                    <div class="service-inner">
-                                                                        <div class="service-title">
-                                                                            <a href="services/project-management/"><span>Corrugated Sheets</span><i class="spaciaz-icon-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-item service-style_list  post-1055 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
-                                                                    <div class="service-inner">
-                                                                        <div class="service-title">
-                                                                            <a href="services/investment-capital/"><span>Fire Rated Aluminum Doors </span><i class="spaciaz-icon-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-item service-style_list  post-1059 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
-                                                                    <div class="service-inner">
-                                                                        <div class="service-title">
-                                                                            <a href="services/construction-management/"><span>Fire Rated Wooden Doors</span><i class="spaciaz-icon-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-item service-style_list current_post post-1060 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
-                                                                    <div class="service-inner">
-                                                                        <div class="service-title">
-                                                                            <a href="services/architecture-design/"><span>Fire Rated Steel Doors</span><i class="spaciaz-icon-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-item service-style_list  post-1061 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
-                                                                    <div class="service-inner">
-                                                                        <div class="service-title">
-                                                                            <a href="services/sales-marketing/"><span>Pre-Engineering Buildings</span><i class="spaciaz-icon-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-item service-style_list  post-1061 spaciaz_services type-spaciaz_services status-publish has-post-thumbnail hentry">
-                                                                    <div class="service-inner">
-                                                                        <div class="service-title">
-                                                                            <a href="services/sales-marketing/"><span>Modular Buildings</span><i class="spaciaz-icon-chevron-right"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                
+                                                                 @endforeach
                                                             </div>
                                                         </div>
                                                     </div>

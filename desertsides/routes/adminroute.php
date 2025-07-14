@@ -11,6 +11,11 @@ use App\Http\Controllers\admin_con\Blog;
 use App\Http\Controllers\admin_con\Gallery;
 use App\Http\Controllers\admin_con\Blog_category;
 use App\Http\Controllers\admin_con\Services;
+use App\Http\Controllers\admin_con\Projects_cate;
+use App\Http\Controllers\admin_con\Projects;
+use App\Http\Controllers\admin_con\Products;
+use App\Http\Controllers\admin_con\Clients;
+use App\Http\Controllers\admin_con\Team;
 use Illuminate\Support\Facades\Route;
 
 // Admin Authentication Routes
@@ -176,5 +181,95 @@ Route::prefix('admin/services')->group(function () {
     /*------delete------*/
     Route::delete('/delete_data/{id}', [Services::class, 'delete_data'])->name('admin_con/services/delete_data');
     Route::delete('/multiple_delete_data', [Services::class, 'multiple_delete_data'])->name('admin_con/services/multiple_delete_data');
+});
+
+
+/*------------------------services----------------------*/
+Route::prefix('admin/projects_cate')->group(function () {
+    Route::get('/', [Projects_cate::class, 'listing'])->name('admin/projects_cate/list');
+    Route::post('/table', [Projects_cate::class, 'getTableData'])->name('admin/projects_cate/table');
+    /*------add------*/
+    Route::get('/add', [Projects_cate::class, 'add_page_url'])->name('admin/projects_cate/add');
+    Route::post('/', [Projects_cate::class, 'datastore_in_database'])->name('admin_con/projects_cate/add_data');
+    /*------upadte------*/
+    Route::get('/edit/{id}', [Projects_cate::class, 'edit_page_url'])->name('admin/projects_cate/edit');
+    Route::post('/edit/{id}', [Projects_cate::class, 'dataupdate_in_database'])->name('admin_con/projects_cate/update_data');
+    /*------status------*/
+    Route::post('/update_status', [Projects_cate::class, 'updateStatus'])->name('admin/projects_cate/update_status');
+    /*------delete------*/
+    Route::delete('/delete_data/{id}', [Projects_cate::class, 'delete_data'])->name('admin_con/projects_cate/delete_data');
+    Route::delete('/multiple_delete_data', [Projects_cate::class, 'multiple_delete_data'])->name('admin_con/projects_cate/multiple_delete_data');
+});
+
+
+/*------------------------services----------------------*/
+Route::prefix('admin/projects')->group(function () {
+    Route::get('/', [Projects::class, 'listing'])->name('admin/projects/list');
+    Route::post('/table', [Projects::class, 'getTableData'])->name('admin/projects/table');
+    /*------add------*/
+    Route::get('/add', [Projects::class, 'add_page_url'])->name('admin/projects/add');
+    Route::post('/', [Projects::class, 'datastore_in_database'])->name('admin_con/projects/add_data');
+    /*------upadte------*/
+    Route::get('/edit/{id}', [Projects::class, 'edit_page_url'])->name('admin/projects/edit');
+    Route::post('/edit/{id}', [Projects::class, 'dataupdate_in_database'])->name('admin_con/projects/update_data');
+    /*------status------*/
+    Route::post('/update_status', [Projects::class, 'updateStatus'])->name('admin/projects/update_status');
+    /*------delete------*/
+    Route::delete('/delete_data/{id}', [Projects::class, 'delete_data'])->name('admin_con/projects/delete_data');
+    Route::delete('/multiple_delete_data', [Projects::class, 'multiple_delete_data'])->name('admin_con/projects/multiple_delete_data');
+});
+
+
+/*------------------------services----------------------*/
+Route::prefix('admin/products')->group(function () {
+    Route::get('/', [Products::class, 'listing'])->name('admin/products/list');
+    Route::post('/table', [Products::class, 'getTableData'])->name('admin/products/table');
+    /*------add------*/
+    Route::get('/add', [Products::class, 'add_page_url'])->name('admin/products/add');
+    Route::post('/', [Products::class, 'datastore_in_database'])->name('admin_con/products/add_data');
+    /*------upadte------*/
+    Route::get('/edit/{id}', [Products::class, 'edit_page_url'])->name('admin/products/edit');
+    Route::post('/edit/{id}', [Products::class, 'dataupdate_in_database'])->name('admin_con/products/update_data');
+    /*------status------*/
+    Route::post('/update_status', [Products::class, 'updateStatus'])->name('admin/products/update_status');
+    /*------delete------*/
+    Route::delete('/delete_data/{id}', [Products::class, 'delete_data'])->name('admin_con/products/delete_data');
+    Route::delete('/multiple_delete_data', [Products::class, 'multiple_delete_data'])->name('admin_con/products/multiple_delete_data');
+});
+
+
+/*------------------------services----------------------*/
+Route::prefix('admin/clients')->group(function () {
+    Route::get('/', [Clients::class, 'listing'])->name('admin/clients/list');
+    Route::post('/table', [Clients::class, 'getTableData'])->name('admin/clients/table');
+    /*------add------*/
+    Route::get('/add', [Clients::class, 'add_page_url'])->name('admin/clients/add');
+    Route::post('/', [Clients::class, 'datastore_in_database'])->name('admin_con/clients/add_data');
+    /*------upadte------*/
+    Route::get('/edit/{id}', [Clients::class, 'edit_page_url'])->name('admin/clients/edit');
+    Route::post('/edit/{id}', [Clients::class, 'dataupdate_in_database'])->name('admin_con/clients/update_data');
+    /*------status------*/
+    Route::post('/update_status', [Clients::class, 'updateStatus'])->name('admin/clients/update_status');
+    /*------delete------*/
+    Route::delete('/delete_data/{id}', [Clients::class, 'delete_data'])->name('admin_con/clients/delete_data');
+    Route::delete('/multiple_delete_data', [Clients::class, 'multiple_delete_data'])->name('admin_con/clients/multiple_delete_data');
+});
+
+
+/*------------------------services----------------------*/
+Route::prefix('admin/team')->group(function () {
+    Route::get('/', [Team::class, 'listing'])->name('admin/team/list');
+    Route::post('/table', [Team::class, 'getTableData'])->name('admin/team/table');
+    /*------add------*/
+    Route::get('/add', [Team::class, 'add_page_url'])->name('admin/team/add');
+    Route::post('/', [Team::class, 'datastore_in_database'])->name('admin_con/team/add_data');
+    /*------upadte------*/
+    Route::get('/edit/{id}', [Team::class, 'edit_page_url'])->name('admin/team/edit');
+    Route::post('/edit/{id}', [Team::class, 'dataupdate_in_database'])->name('admin_con/team/update_data');
+    /*------status------*/
+    Route::post('/update_status', [Team::class, 'updateStatus'])->name('admin/team/update_status');
+    /*------delete------*/
+    Route::delete('/delete_data/{id}', [Team::class, 'delete_data'])->name('admin_con/team/delete_data');
+    Route::delete('/multiple_delete_data', [Team::class, 'multiple_delete_data'])->name('admin_con/team/multiple_delete_data');
 });
 

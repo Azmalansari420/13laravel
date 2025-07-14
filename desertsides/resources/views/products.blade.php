@@ -60,6 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="elementor-element elementor-element-70691d5 e-flex e-con-boxed e-con e-parent" data-id="70691d5" data-element_type="container">
                                     <div class="e-con-inner">
                                         
@@ -67,14 +68,19 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-service-wrapper">
                                                     <div class="d-grid">
+
+                                                        @php
+                                                        $products = DB::Table('products')->where('status',1)->get()
+                                                        @endphp
+                                                        @foreach($products as $data)
                                                         <div class="grid-item service-item service-style-1">
                                                             <div class="service-inner service-style-inner">
                                                                 <div class="service-content">
                                                                     <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
+                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="{{url('public/media/uploads/products/'.$data->image)}}" class="attachment-large size-large wp-post-image"  />                    
                                                                     </div>
                                                                     <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
+                                                                        <a class="service-button" href="{{$data->slug}}">
                                                                         <span class="btn-icon-wrap">
                                                                         <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
                                                                         <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
@@ -84,157 +90,17 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Prefabricated Buildings </a></h4>
+                                                                    <h4 class="service-title"><a href="{{$data->slug}}">{{$data->name}} </a></h4>
                                                                     <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
+                                                                        {{ Str::limit(strip_tags($data->content), 100) }}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Modular Buildings</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Pre-Engineering Buildings</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Fire Rated Steel Doors</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Fire Rated Wooden Doors</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Fire Rated Aluminum Doors </a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item service-item service-style-1">
-                                                            <div class="service-inner service-style-inner">
-                                                                <div class="service-content">
-                                                                    <div class="service-post-thumbnail">
-                                                                        <img fetchpriority="high" decoding="async" width="388" height="248" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-600,h-auto,fo-webp,dpr-1" class="attachment-large size-large wp-post-image" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1024,h-auto,fo-webp,dpr-1 1024w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-300,h-auto,fo-webp,dpr-1 300w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-768,h-auto,fo-webp,dpr-1 768w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/image.svg?tr=w-1500,h-auto,fo-webp,dpr-1 1500w" sizes="(max-width: 900px) 100vw, 900px" />                    
-                                                                    </div>
-                                                                    <div class="service-button-wrap">
-                                                                        <a class="service-button" href="single-product.php">
-                                                                        <span class="btn-icon-wrap">
-                                                                        <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                        </span>
-                                                                        </a>
-                                                                        <div class="decor-border"> </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="service-info">
-                                                                    <h4 class="service-title"><a href="single-product.php">Corrugated Sheets</a></h4>
-                                                                    <div class="description">
-                                                                        <p>We engage as early as possible, typically during the conceptual or schematic stage.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
+
+                                                      
+                                                      @endforeach
                                                         
                                                         
                                                     </div>
@@ -251,6 +117,7 @@
                 </div>
                 <!-- .col-fluid -->
             </div>
+        </div>
 
 
 @include("wp-includes/footer");

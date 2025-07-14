@@ -76,9 +76,14 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-teambox-item-wrapper">
                                                     <div class="d-grid">
+
+                                                         @php
+                                                            $gallery = DB::Table('team')->orderBy('id','desc')->where('status',1)->get();
+                                                            @endphp
+                                                            @foreach($gallery as $data)
                                                         <div class="grid-item elementor-teambox-item">
                                                             <div class="team-item">
-                                                                <a class="team-link elementor-button-icon" href="our-team/dennis-daniels/">
+                                                                <a class="team-link elementor-button-icon" href="#!">
                                                                 <span class="btn-icon-wrap">
                                                                 <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
                                                                 <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
@@ -93,157 +98,21 @@
                                                                     </div>
                                                                     <div class="team-image-inner">
                                                                         <div class="decor_border"> </div>
-                                                                        <img fetchpriority="high" decoding="async" width="615" height="750" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg" class="attachment-full size-full wp-image-675" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 615w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 246w" sizes="(max-width: 615px) 100vw, 615px" />                
+                                                                        <img fetchpriority="high" decoding="async" width="615" height="750" src="{{url('public/media/uploads/team/'.$data->image)}}" class="attachment-full size-full wp-image-675" alt="" />                
                                                                     </div>
                                                                 </div>
                                                                 <div class="team-infor">
-                                                                    <div class="team-job">founder &amp; ceo</div>
+                                                                    <div class="team-job">{{$data->position}}</div>
                                                                     <h5 class="team-name">
-                                                                        <a href="our-team/dennis-daniels/">Dennis Daniels</a>                                
+                                                                        <a href="#!">{{$data->name}}</a>                                
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="grid-item elementor-teambox-item">
-                                                            <div class="team-item">
-                                                                <a class="team-link elementor-button-icon" href="our-team/johan-sanford/">
-                                                                <span class="btn-icon-wrap">
-                                                                <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                </span>
-                                                                </a>
-                                                                <div class="team-image">
-                                                                    <div class="team-box-socials-wrapper">
-                                                                        <div class="team-icon-socials">
-                                                                            <ul>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="team-image-inner">
-                                                                        <div class="decor_border"> </div>
-                                                                        <img decoding="async" width="615" height="750" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg" class="attachment-full size-full wp-image-670" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 615w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 246w" sizes="(max-width: 615px) 100vw, 615px" />                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="team-infor">
-                                                                    <div class="team-job">excutive assistant</div>
-                                                                    <h5 class="team-name">
-                                                                        <a href="our-team/johan-sanford/">Johan Sanford</a>                                
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item elementor-teambox-item">
-                                                            <div class="team-item">
-                                                                <a class="team-link elementor-button-icon" href="our-team/floyd-miles/">
-                                                                <span class="btn-icon-wrap">
-                                                                <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                </span>
-                                                                </a>
-                                                                <div class="team-image">
-                                                                    <div class="team-box-socials-wrapper">
-                                                                        <div class="team-icon-socials">
-                                                                            <ul>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="team-image-inner">
-                                                                        <div class="decor_border"> </div>
-                                                                        <img decoding="async" width="615" height="750" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg" class="attachment-full size-full wp-image-671" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 615w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 246w" sizes="(max-width: 615px) 100vw, 615px" />                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="team-infor">
-                                                                    <div class="team-job">director of architecture</div>
-                                                                    <h5 class="team-name">
-                                                                        <a href="our-team/floyd-miles/">Floyd Miles</a>                                
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item elementor-teambox-item">
-                                                            <div class="team-item">
-                                                                <a class="team-link elementor-button-icon" href="our-team/leslie-alexander/">
-                                                                <span class="btn-icon-wrap">
-                                                                <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                </span>
-                                                                </a>
-                                                                <div class="team-image">
-                                                                    <div class="team-box-socials-wrapper">
-                                                                        <div class="team-icon-socials">
-                                                                            <ul>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="team-image-inner">
-                                                                        <div class="decor_border"> </div>
-                                                                        <img loading="lazy" decoding="async" width="615" height="750" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg" class="attachment-full size-full wp-image-672" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 615w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 246w" sizes="(max-width: 615px) 100vw, 615px" />                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="team-infor">
-                                                                    <div class="team-job">Development manager</div>
-                                                                    <h5 class="team-name">
-                                                                        <a href="our-team/leslie-alexander/">Leslie Alexander</a>                                
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item elementor-teambox-item">
-                                                            <div class="team-item">
-                                                                <a class="team-link elementor-button-icon" href="our-team/bernardo-gordon/">
-                                                                <span class="btn-icon-wrap">
-                                                                <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                </span>
-                                                                </a>
-                                                                <div class="team-image">
-                                                                    <div class="team-box-socials-wrapper">
-                                                                        <div class="team-icon-socials">
-                                                                            <ul>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="team-image-inner">
-                                                                        <div class="decor_border"> </div>
-                                                                        <img loading="lazy" decoding="async" width="615" height="750" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg" class="attachment-full size-full wp-image-673" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 615w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 246w" sizes="(max-width: 615px) 100vw, 615px" />                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="team-infor">
-                                                                    <div class="team-job">OPERATIONS Manager</div>
-                                                                    <h5 class="team-name">
-                                                                        <a href="our-team/bernardo-gordon/">Bernardo Gordon</a>                                
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="grid-item elementor-teambox-item">
-                                                            <div class="team-item">
-                                                                <a class="team-link elementor-button-icon" href="our-team/ralph-edwards/">
-                                                                <span class="btn-icon-wrap">
-                                                                <span class="btn-icon"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                <span class="btn-icon-hover"><i class="spaciaz-icon-arrow-long-right"></i></span>
-                                                                </span>
-                                                                </a>
-                                                                <div class="team-image">
-                                                                    <div class="team-box-socials-wrapper">
-                                                                        <div class="team-icon-socials">
-                                                                            <ul>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="team-image-inner">
-                                                                        <div class="decor_border"> </div>
-                                                                        <img loading="lazy" decoding="async" width="615" height="750" src="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg" class="attachment-full size-full wp-image-674" alt="" srcset="https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 615w, https://ik.imagekit.io/9sqym9p8y/@inabilansari/profile-square.svg 246w" sizes="(max-width: 615px) 100vw, 615px" />                
-                                                                    </div>
-                                                                </div>
-                                                                <div class="team-infor">
-                                                                    <div class="team-job">Construction Manager</div>
-                                                                    <h5 class="team-name">
-                                                                        <a href="our-team/ralph-edwards/">Ralph Edwards</a>                                
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
+                                                        @endforeach
+
+                                                       
                                                     </div>
                                                 </div>
                                             </div>

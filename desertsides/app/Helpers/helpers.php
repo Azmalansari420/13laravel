@@ -62,6 +62,23 @@ use Illuminate\Support\Facades\Session;
 
 
 
+ /*statsus*/
+  function p_status($value)
+    {
+        $string = '';
+      if($value==1)
+      {
+        $string = 'Completed';
+      }
+      else if($value==2)
+      {
+        $string = 'Under Construction';
+      }
+      return $string;
+    }
+
+
+
 
 
 

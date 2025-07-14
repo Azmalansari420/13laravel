@@ -105,10 +105,10 @@
                                                 <div class="elementor-element elementor-element-6f263f1 elementor-button-link line-effect-yes elementor-widget elementor-widget-spaciaz-button" data-id="6f263f1" data-element_type="widget" data-widget_type="spaciaz-button.default">
                                                     <div class="elementor-widget-container">
                                                         <div class="elementor-button-wrapper">
-                                                            <a href="mailto:info@desertsides.com" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+                                                            <a href="mailto:{{$sitesetting->email}}" class="elementor-button-link elementor-button elementor-size-sm" role="button">
                                                             <span class="elementor-button-content-wrapper">
-                                                            <span class="elementor-button-text" data-name="info@desertsides.com">
-                                                            <span>info@desertsides.com</span>
+                                                            <span class="elementor-button-text" data-name="{{$sitesetting->email}}">
+                                                            <span>{{$sitesetting->email}}</span>
                                                             </span>
                                                             </span>
                                                             </a>
@@ -144,136 +144,17 @@
                                                 <div class="elementor-widget-container">
                                                     <div class="elementor-client-wrapper">
                                                         <div class="d-grid">
+                                                             @php
+                                                            $gallery = DB::Table('clients')->orderBy('id','desc')->where('status',1)->get();
+                                                            @endphp
+                                                            @foreach($gallery as $data)
                                                             <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
+                                                                <a href="{{url('public/media/uploads/clients/'.$data->image)}}" target="_blank">
+                                                                    <img class="img-fluid" width="160" height="80" src="{{url('public/media/uploads/clients/'.$data->image)}}" loading="lazy" alt="brand image">
                                                                 </a>
                                                             </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
-                                                            <div class="grid-item client-item">
-                                                                <a href="#!" target="_blank">
-                                                                    <img class="img-fluid" width="160" height="80" src="https://ik.imagekit.io/asaztla4e/Screenshot%202025-01-29%20121109.webp?tr=w-160,h-80,fo-webp,cm-pad_resize,dpr-1" loading="lazy" alt="brand image">
-                                                                </a>
-                                                            </div>
+                                                            
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
