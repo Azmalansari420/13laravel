@@ -1,0 +1,347 @@
+:root {
+  --tg-ff-body: "Poppins", sans-serif;
+  --tg-ff-outfit: "Outfit", sans-serif;
+  --tg-ff-segoepr: 'segoepr', sans-serif;
+  --tg-ff-chillax: 'chillax', sans-serif;
+  --tg-ff-quentin: 'quentin', sans-serif;
+  --tg-ff-rage: 'rage', sans-serif;
+  --tg-ff-fontawesome: "Font Awesome 6 Pro";
+  --tg-common-white: #fff;
+  --tg-common-black: #020615;
+  --tg-common-black-2: #000;
+  --tg-common-yellow: #ff9901;
+  --tg-grey-1: #353844;
+  --tg-grey-2: #454546;
+  --tg-grey-3: #f3f3f4;
+  --tg-grey-4: #737374;
+  --tg-grey-5: #f8f8f8;
+  --tg-grey-6: #666;
+  --tg-grey-7: #f6f6f7;
+  --tg-grey-8: #f6f4fa;
+  --tg-theme-primary: #071f5d;
+  --tg-theme-secondary: #f22c39;
+  --tg-border-1: #e1e1e1;
+  --tg-border-2: #c5c5c5;
+  --tg-border-3: #e6e6e6;
+}
+
+
+@media (min-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        max-width: 1450px;
+    }
+}
+
+
+.tg-header-4-bootom.tg-header-lg-space.header-sticky {
+    padding: 10px 0 !important;
+}
+
+.tgmenu__navbar-wrap-4 ul li a {
+    padding: 37px 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.tg-listing-2-price {
+    padding: 1px 10px;
+    background: #fe2145;
+  }
+.tg-listing-2-card-item .tg-card-border {
+    border-radius: unset;
+}
+.tg-listing-2-mask {
+    width: min-content;
+}
+
+
+.tour-one__image img {
+    width: 100%;
+    height: 250px;
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.tour-one__image:hover img {
+    transform: scale(1.1); /* Zoom in */
+}
+
+.red-color {
+    background: #fe2145 !important;
+    border: none !important;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: white;
+}
+.blue-color
+{
+    background: #1484f0 !important;
+    border: none !important;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: white;
+}
+
+
+
+
+
+
+
+  .sc-gallery .gallery_item-wrap {
+    padding-bottom: 30px;
+}
+.bt_bb_grid_item {
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.bt_bb_grid_item_inner {
+    position: relative;
+    overflow: hidden;
+}
+
+.bt_bb_grid_item_post_thumbnail img {
+    transition: transform 0.5s cubic-bezier(0.6, 0.23, 0.32, 0.95);
+    width: 100%;
+    height: auto;
+}
+
+.bt_bb_grid_item:hover img {
+    transform: scale(1.04);
+}
+
+.bt_bb_grid_item_post_title_init {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 1.875em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+.bt_bb_grid_item_post_title_init h5 {
+    color: #fff;
+    font-size: 1.875em;
+    font-weight: 800;
+    text-shadow: 0 2px 5px rgba(18, 18, 18, 0.75);
+}
+
+.bt_bb_grid_item:hover .bt_bb_grid_item_post_title_init {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.bt_bb_grid_item_inner_content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.875em;
+    transform: translateY(100%);
+    transition: 0.5s ease transform, 0.5s ease box-shadow;
+    background: linear-gradient(to right, rgb(254 33 51), rgb(4 117 232));
+    color: #fff;
+    pointer-events: none;
+}
+
+.bt_bb_grid_item:hover .bt_bb_grid_item_inner_content {
+    transform: translateY(0);
+}
+
+.bt_bb_grid_item_post_title {
+    font-size: 1.5625em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    line-height: 1.2em;
+}
+
+.bt_bb_grid_item_post_excerpt {
+    font-size: 0.9375em;
+    line-height: 1.5em;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .tgmenu__navbar-wrap ul {
+        margin: 0 auto 0 0;
+    }
+}
+
+.header-margin
+{
+    margin: 0 auto!important;
+}
+
+.offCanvas__logo img {
+    max-height: 100%;
+}
+
+
+.tg-breadcrumb-spacing-5 {
+    padding-top: 115px;
+    padding-bottom: 105px;
+}
+
+.tg-hero-top-shadow {
+
+    height: 127px;
+}
+
+
+
+
+.flip-box {
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flip-box:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+}
+
+.flip-front img,
+.flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.flip-back {
+  transform: rotateY(360deg);
+}
+
+
+
+
+ .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal input,
+    .modal textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+
+
+
+    .tg-footer-area {
+    position: relative;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.tg-footer-area::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgb(6 0 0 / 75%); /* Adjust darkness here */
+    z-index: 0;
+    border-radius: inherit;
+}
+
+/* Ensure the footer content is above the overlay */
+.tg-footer-area > .container,
+.tg-footer-copyright {
+    position: relative;
+    z-index: 2;
+}
+
+.tg-footer-link ul li a {
+    text-transform: capitalize;
+    color: #fff;
+    display: inline-block;
+    padding: 6px 0px;
+}
+.tg-footer-widget p {
+    line-height: 24px;
+    text-transform: capitalize;
+    color: #fff;
+    font-size: 15px;
+}
+.tg-footer-widget.tg-footer-info.mb-40>ul>li>a {
+    color: white;
+}
+
+.tg-footer-copyright span {
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: white;
+    display: inline-block;
+}
+
+.tg-footer-copyright {
+    border-top: 1px solid #ffffff;
+    padding: 15px 10px;
+}
